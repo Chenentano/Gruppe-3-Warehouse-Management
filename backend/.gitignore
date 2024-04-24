@@ -34,5 +34,8 @@ build/
 /.mvn/
 /mvnw
 /mvnw.cmd
+
+###Secrets###
+
 /src/main/resources/application-secrets.properties
 /src/main/resources/application-secret.properties
