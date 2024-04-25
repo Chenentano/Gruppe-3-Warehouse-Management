@@ -1,9 +1,9 @@
-package controller;
+package com.example.backend.controller;
 
 import lombok.RequiredArgsConstructor;
-import model.Product;
+import com.example.backend.model.Product;
 import org.springframework.web.bind.annotation.*;
-import service.WarehouseService;
+import com.example.backend.service.WarehouseService;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class WarehouseController {
 
     private final WarehouseService service;
 
-    @GetMapping("getAll")
+    @GetMapping("/getAll")
     public List<Product> getAllProducts() {return service.getAllProducts();}
 
     @GetMapping("/get{id}")
