@@ -15,7 +15,7 @@ public class WarehouseController {
 
     private final WarehouseService service;
 
-    @GetMapping("getAll")
+    @GetMapping("/getAll")
     public List<Product> getAllProducts() {return service.getAllProducts();}
 
     @GetMapping("/get{id}")
