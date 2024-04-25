@@ -1,13 +1,13 @@
-package service;
+package com.example.backend.service;
 
 import lombok.RequiredArgsConstructor;
-import model.Product;
+import com.example.backend.model.Product;
 import org.springframework.stereotype.Service;
-import repository.WarehouseRepository;
+import com.example.backend.repository.WarehouseRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class WarehouseService {
