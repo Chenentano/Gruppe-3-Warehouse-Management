@@ -18,7 +18,7 @@ public class WarehouseController {
     @GetMapping("/getAll")
     public List<Product> getAllProducts() {return service.getAllProducts();}
 
-    @GetMapping("/get{id}")
+    @GetMapping("/get/{id}")
     public Product getProductById(@PathVariable String id) {
         return service.findProductById(id);
     }
