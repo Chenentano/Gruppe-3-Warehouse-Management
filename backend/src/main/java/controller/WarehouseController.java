@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import service.WarehouseService;
 
 import java.util.List;
-import java.util.NoSuchElementException;
+
 
 @RequestMapping("api/product")
 @RestController
@@ -15,24 +15,27 @@ public class WarehouseController {
 
     private final WarehouseService service;
 
-    @GetMapping("getAllProduct")
+    @GetMapping("getAll")
     public List<Product> getAllProducts() {return service.getAllProducts();}
 
-    @PostMapping("/addProduct")
+    @GetMapping("/get{id}")
+    public Product getProductById(@PathVariable String id) {
+        return service.findProductById(id);
+    }
+
+    @PostMapping("/add")
     public Product createNewProduct(@RequestBody Product newProduct) {return service.saveNewProduct(newProduct);}
 
-    @PutMapping("/updateProduct")
+    @PutMapping("/update")
     public Product updateProduct(@RequestBody Product product, @PathVariable String id) {return service.updateProduct(product,id);}
 
-    @DeleteMapping("/{id}")
-    public String deleteProduct(@PathVariable String id) {
-        try {
-            service.deleteProduct(id).orElseThrow();
-            return "Product not deleted";
-        }catch (NoSuchElementException e) {
-            return "Product deleted ok";
-        }
+    @DeleteMapping("/delete")
+    public void  deleteProduct(@PathVariable String id) {
+        service.deleteProduct(id);
     }
 
 
 }
+
+
+
