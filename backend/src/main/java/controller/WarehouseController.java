@@ -8,23 +8,23 @@ import service.WarehouseService;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-@RequestMapping("Api/product")
+@RequestMapping("api/product")
 @RestController
 @RequiredArgsConstructor
 public class WarehouseController {
 
     private final WarehouseService service;
 
-    @GetMapping
+    @GetMapping("api/product")
     public List<Product> getAllProducts() {return service.getAllProducts();}
 
-    @PostMapping
+    @PostMapping("/{id}")
     public Product saveNewProduct(@RequestBody Product newProduct) {return service.saveNewProduct(newProduct);}
 
     @PutMapping("/{id}")
     public Product updateProduct(@RequestBody Product requiredProduct) {return service.updateProduct(requiredProduct);}
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public String deleteProduct(@PathVariable String id) {
         try {
             service.deleteProduct(id).orElseThrow();

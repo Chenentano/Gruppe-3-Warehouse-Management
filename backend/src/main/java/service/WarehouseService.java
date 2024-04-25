@@ -1,11 +1,14 @@
 package service;
 
+import lombok.RequiredArgsConstructor;
 import model.Product;
+import org.springframework.stereotype.Service;
 import repository.WarehouseRepository;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
+@RequiredArgsConstructor
 public class WarehouseService {
     private final WarehouseRepository repo;
 
@@ -16,16 +19,17 @@ public class WarehouseService {
                 newProduct.id(),
                 newProduct.productId(),
                 newProduct.productName(),
-                newProduct.productQuantity()
                 newProduct.category(),
+                newProduct.productQuantity()
+
         ); repo.save(product);
         return product;
     }
 
     public Product updateProduct(Product requiredProduct) {
-        Product toUpdate = repo.findById(requiredProduct.getId()).orElseThrow();
-        repo.save(toUpdate.withStatus(requiredProduct.getStatus()).withDescription(requiredProduct.getDescrition()));
-        return repo.findById(toUpdate.getId()).orElseThrow();
+        Product toUpdate = repo.findById(requiredProduct.id()).orElseThrow();
+        repo.save(toUpdate.productId(requiredProduct.id()).withDescription(requiredProduct.id()));
+        return repo.findById(toUpdate.id()).orElseThrow();
     }
 
     public Optional<Product> deleteProduct(String id) {
