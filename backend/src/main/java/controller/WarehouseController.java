@@ -22,7 +22,7 @@ public class WarehouseController {
     public Product createNewProduct(@RequestBody Product newProduct) {return service.saveNewProduct(newProduct);}
 
     @PutMapping("/updateProduct")
-    public Product updateProduct(@RequestBody Product requiredProduct) {return service.updateProduct(requiredProduct);}
+    public Product updateProduct(@RequestBody Product product, @PathVariable String id) {return service.updateProduct(product,id);}
 
     @DeleteMapping("/{id}")
     public String deleteProduct(@PathVariable String id) {
