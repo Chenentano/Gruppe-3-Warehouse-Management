@@ -26,10 +26,10 @@ public class WarehouseController {
     @PostMapping("/add")
     public Product createNewProduct(@RequestBody Product newProduct) {return service.createNewProduct(newProduct);}
 
-    @PutMapping("/update")
+    @PutMapping("/update/{id}")
     public Product updateProduct(@RequestBody Product product, @PathVariable String id) {return service.updateProduct(product,id);}
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{id}")
     public void  deleteProduct(@PathVariable String id) {
         service.deleteProduct(id);
     }
