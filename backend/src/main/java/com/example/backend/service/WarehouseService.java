@@ -15,7 +15,7 @@ public class WarehouseService {
 
     public List<Product> getAllProducts(){return repo.findAll();}
 
-    public Product saveNewProduct(Product newProduct) {
+    public Product createNewProduct(Product newProduct) {
         Product product = new Product(
                 newProduct.id(),
                 newProduct.productId(),
