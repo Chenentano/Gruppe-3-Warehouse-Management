@@ -15,13 +15,13 @@ public class WarehouseController {
 
     private final WarehouseService service;
 
-    @GetMapping("api/product")
+    @GetMapping("getAllProduct")
     public List<Product> getAllProducts() {return service.getAllProducts();}
 
-    @PostMapping("/{id}")
-    public Product saveNewProduct(@RequestBody Product newProduct) {return service.saveNewProduct(newProduct);}
+    @PostMapping("/addProduct")
+    public Product createNewProduct(@RequestBody Product newProduct) {return service.saveNewProduct(newProduct);}
 
-    @PutMapping("/{id}")
+    @PutMapping("/updateProduct")
     public Product updateProduct(@RequestBody Product requiredProduct) {return service.updateProduct(requiredProduct);}
 
     @DeleteMapping("/{id}")

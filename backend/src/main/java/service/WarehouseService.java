@@ -26,10 +26,9 @@ public class WarehouseService {
         return product;
     }
 
-    public Product updateProduct(Product requiredProduct) {
-        Product toUpdate = repo.findById(requiredProduct.id()).orElseThrow();
-        repo.save(toUpdate.productId(requiredProduct.id()).withDescription(requiredProduct.id()));
-        return repo.findById(toUpdate.id()).orElseThrow();
+    public Product updateProduct(Product product, String id) {
+        Product productToUpdate = new Product(id, product.productId(), product.productName(), product.category(),product.productQuantity());
+        return repo.save(productToUpdate);
     }
 
     public Optional<Product> deleteProduct(String id) {
