@@ -12,12 +12,13 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class WarehouseService {
     private final WarehouseRepository repo;
+    private final IdGenerator idGenerator;
 
     public List<Product> getAllProducts(){return repo.findAll();}
 
     public Product createNewProduct(Product newProduct) {
         Product product = new Product(
-                newProduct.id(),
+                idGenerator.generateId(),
                 newProduct.productId(),
                 newProduct.productName(),
                 newProduct.category(),
