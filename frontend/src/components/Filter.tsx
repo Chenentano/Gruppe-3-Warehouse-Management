@@ -1,4 +1,4 @@
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, useState} from "react";
 
 export type FilterValues = {
     text: string,
@@ -15,26 +15,33 @@ const filterStartValues: FilterValues = {
 }
 
 export function Filter(props: FilterProps) {
-    const [filterValues, setFilterValues] = useState<FilterValues>(filterStartValues)
-
-    useEffect(() => props.callback(filterValues), [filterValues])
+    const [filterText, setFilterText] = useState<string>(filterStartValues.text)
+    const [filterCategory, setFilterCategory] = useState<string>(filterStartValues.category)
 
     function handleOnChangeInput(event: ChangeEvent<HTMLInputElement>) {
-        setFilterValues({text:event.target.value, category:filterValues.category});
-        console.log("Input changed: " + filterValues.text + " - " + filterValues.category);
-        props.callback(filterValues);
+        setFilterText(event.target.value)
+        console.log("Input changed: " + filterText + " -> " + event.target.value);
+        const newFilterValues:FilterValues = {
+            text: event.target.value,
+            category: filterCategory
+        }
+        props.callback(newFilterValues);
     }
 
     function handleOnSelectChange(event: ChangeEvent<HTMLSelectElement>) {
-        setFilterValues({text:filterValues.text, category:event.target.value});
-        console.log("Select changed: " + filterValues.text + " - " + filterValues.category);
-        props.callback(filterValues);
+        setFilterCategory(event.target.value)
+        console.log("Select changed: " + filterCategory + " -> " + event.target.value);
+        const newFilterValues:FilterValues = {
+            text: filterText,
+            category: event.target.value
+        }
+        props.callback(newFilterValues);
     }
 
     return (<>
         <div className="filter-items">
-            <input className="filter-input" type="search" placeholder="Search" onChange={handleOnChangeInput} value={filterValues.text}/>
-            <select className="filter-category-select" onChange={handleOnSelectChange} value={filterValues.category}>
+            <input className="filter-input" type="search" placeholder="Search" onChange={handleOnChangeInput} value={filterText}/>
+            <select className="filter-category-select" onChange={handleOnSelectChange} value={filterCategory}>
                 <option value="productId">ProductId</option>
                 <option value="name">Name</option>
                 <option value="category">Kategorie</option>
