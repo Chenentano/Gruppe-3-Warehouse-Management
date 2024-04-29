@@ -13,7 +13,7 @@ export default function ProductsPage() {
     const params = useParams()
 
     useEffect(() => {
-        axios.get("https://localhost:8080/api/product/" + params.id).then(response => {
+        axios.get("/api/product/" + params.id).then(response => {
             setProduct(response.data)
         })
     }, [params.id])
