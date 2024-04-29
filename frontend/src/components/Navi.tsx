@@ -1,10 +1,14 @@
 import {Link, NavLink} from "react-router-dom";
 import './Navi.css';
+import {Filter, FilterValues} from "./Filter.tsx";
 
 export function Navi(): JSX.Element {
-    return <nav className="navbar">
-        <div> User - Login </div>
 
+    function myFilterCallback(filterValues: FilterValues) {
+        console.log("Callback: " + filterValues.text + " - " + filterValues.category);
+    }
+
+    return <nav className="navbar">
         <div>
             <Link to={"/"} className="navbar-title">Warehouse System</Link>
         </div>
@@ -12,15 +16,14 @@ export function Navi(): JSX.Element {
         <div>
             <ul className={"navbar-items"}>
                 <li className="nav-item">
-                    <NavLink to={"/"}>All Products</NavLink>
+                    <NavLink to={"/"}>Produktliste</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink to={"/suchen"}>Product Suchen</NavLink>
+                    <NavLink to={"/add"}>Produkt hinzufügen</NavLink>
                 </li>
-                <li className="nav-item">
-                    <NavLink to={"/add"}>Add Product</NavLink>
+                <li className="nav-item filter-item">
+                    <Filter callback={myFilterCallback} />
                 </li>
-
             </ul>
 
 
