@@ -6,7 +6,7 @@ target/
 *.iml
 
 ### Backend ###
-./backend/src/main/resources/static/*
+./backend/src/main/resources/static/
 
 ### STS ###
 .apt_generated
