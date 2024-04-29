@@ -1,10 +1,5 @@
 import {Product} from "../App.tsx";
 import {Link} from "react-router-dom";
-import '../assets/styles.css';
-
-
-
-
 
 type ProductProps = {
     product: Product

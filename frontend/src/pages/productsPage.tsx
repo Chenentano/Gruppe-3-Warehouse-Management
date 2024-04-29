@@ -8,7 +8,7 @@ import axios from "axios";
 
 export default function ProductsPage() {
 
-    const [product, setProduct] = useState<Product>({})
+    const [product, setProduct] = useState<Product>({} as Product)
 
     const params = useParams()
 
