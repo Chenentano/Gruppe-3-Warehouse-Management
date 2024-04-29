@@ -41,7 +41,7 @@ export default function StartPage() {
 
 
     function getProduct(page: number) {
-        axios.get("https://localhost:8080/api/product?id=" + page).then(response => {
+        axios.get("/api/product/get/" + page).then(response => {
 
             setInfo({next: response.data.info.next, prev: response.data.info.prev, pageCount:response.data.info.pages})
             setProduct(response.data.results)
