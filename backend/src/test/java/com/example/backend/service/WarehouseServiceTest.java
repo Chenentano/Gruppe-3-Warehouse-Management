@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.*;
 
 
@@ -17,11 +18,13 @@ class WarehouseServiceTest {
 
     private WarehouseService warehouseService;
     private WarehouseRepository mockWarehouseRepository;
+    private IdGenerator mockIdGenerator;
 
     @BeforeEach
     void setUp() {
         mockWarehouseRepository = mock(WarehouseRepository.class);
-        warehouseService = new WarehouseService(mockWarehouseRepository);
+        mockIdGenerator = mock(IdGenerator.class);
+        warehouseService = new WarehouseService(mockWarehouseRepository, mockIdGenerator);
     }
 
 
@@ -74,10 +77,11 @@ class WarehouseServiceTest {
         Product product = new Product("id1", "pid1", "ProductName1", ProductCategory.GENERAL, 21);
 
         Product actual = warehouseService.createNewProduct(product);
+        assertNotEquals(product.id(), actual.id());
         assertEquals(product.productId(), actual.productId());
         assertEquals(product.productName(), actual.productName());
         assertEquals(product.category(), actual.category());
         assertEquals(product.productQuantity(), actual.productQuantity());
-        verify(mockWarehouseRepository, times(1)).save(product);
+        verify(mockWarehouseRepository, times(1)).save(actual);
     }
 }
