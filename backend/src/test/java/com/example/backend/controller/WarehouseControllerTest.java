@@ -25,9 +25,9 @@ class WarehouseControllerTest {
     @Test
     void getAllProducts() {
         List<Product> products = List.of(
-                new Product("id1","pid1", "ProductName1", ProductCategory.GENERAL,21),
-                new Product("id2","pid2", "ProductName2", ProductCategory.GENERAL,52),
-                new Product("id3","pid3", "ProductName3", ProductCategory.GENERAL,43)
+                new Product("id1","pid1", "ProductName1", ProductCategory.NONE,21),
+                new Product("id2","pid2", "ProductName2", ProductCategory.NONE,52),
+                new Product("id3","pid3", "ProductName3", ProductCategory.NONE,43)
         );
         when(mockWarehouseService.getAllProducts()).thenReturn(products);
         List<Product> actual = warehouseController.getAllProducts();
@@ -36,7 +36,7 @@ class WarehouseControllerTest {
 
     @Test
     void getProductById() {
-        Product product = new Product("id1","pid1", "ProductName1", ProductCategory.GENERAL,21);
+        Product product = new Product("id1","pid1", "ProductName1", ProductCategory.NONE,21);
         when(mockWarehouseService.findProductById("id1")).thenReturn(product);
         Product actual = warehouseController.getProductById("id1");
         assertEquals(product, actual);
@@ -45,7 +45,7 @@ class WarehouseControllerTest {
 
     @Test
     void createNewProduct() {
-        Product product = new Product("id1","pid1", "ProductName1", ProductCategory.GENERAL,21);
+        Product product = new Product("id1","pid1", "ProductName1", ProductCategory.NONE,21);
         when(mockWarehouseService.createNewProduct(product)).thenReturn(product);
 
         Product newProduct = warehouseController.createNewProduct(product);
@@ -56,7 +56,7 @@ class WarehouseControllerTest {
 
     @Test
     void updateProduct() {
-        Product product = new Product("id1","pid1", "ProductName1", ProductCategory.GENERAL,21);
+        Product product = new Product("id1","pid1", "ProductName1", ProductCategory.NONE,21);
         when(mockWarehouseService.updateProduct(product,"id1")).thenReturn(product);
 
         Product newProduct = warehouseController.updateProduct(product,"id1");

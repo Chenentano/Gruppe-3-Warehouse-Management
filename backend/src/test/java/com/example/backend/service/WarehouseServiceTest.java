@@ -31,9 +31,9 @@ class WarehouseServiceTest {
     @Test
     void testGetAllProducts() {
         List<Product> products = List.of(
-                new Product("id1", "pid1", "ProductName1", ProductCategory.GENERAL, 21),
-                new Product("id2", "pid2", "ProductName2", ProductCategory.GENERAL, 52),
-                new Product("id3", "pid3", "ProductName3", ProductCategory.GENERAL, 43)
+                new Product("id1", "pid1", "ProductName1", ProductCategory.NONE, 21),
+                new Product("id2", "pid2", "ProductName2", ProductCategory.NONE, 52),
+                new Product("id3", "pid3", "ProductName3", ProductCategory.NONE, 43)
         );
         when(mockWarehouseRepository.findAll()).thenReturn(products);
 
@@ -44,7 +44,7 @@ class WarehouseServiceTest {
 
     @Test
     void testFindProductById() {
-        Product product = new Product("id1", "pid1", "ProductName1", ProductCategory.GENERAL, 21);
+        Product product = new Product("id1", "pid1", "ProductName1", ProductCategory.NONE, 21);
         when(mockWarehouseRepository.findById("id1")).thenReturn(Optional.of(product));
 
         Product actual = warehouseService.findProductById("id1");
@@ -55,7 +55,7 @@ class WarehouseServiceTest {
 
     @Test
     void testUpdateProduct() {
-        Product product = new Product("id1", "pid1", "ProductName1", ProductCategory.GENERAL, 21);
+        Product product = new Product("id1", "pid1", "ProductName1", ProductCategory.NONE, 21);
         when(mockWarehouseRepository.save(product)).thenReturn(product);
 
         Product actual = warehouseService.updateProduct(product, product.id());
@@ -74,7 +74,7 @@ class WarehouseServiceTest {
 
     @Test
     void createNewProduct() {
-        Product product = new Product("id1", "pid1", "ProductName1", ProductCategory.GENERAL, 21);
+        Product product = new Product("id1", "pid1", "ProductName1", ProductCategory.NONE, 21);
 
         Product actual = warehouseService.createNewProduct(product);
         assertNotEquals(product.id(), actual.id());
