@@ -8,6 +8,7 @@ export interface Product {
 
 
 export enum ProductCategory{
+    None,
     Autos,
     Baby,
     Baumaterial,
@@ -18,8 +19,4 @@ export enum ProductCategory{
     Haustiere,
     Kosmetik,
     Spielzeug
-
-
-
-
 }
