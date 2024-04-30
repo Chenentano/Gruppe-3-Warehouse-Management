@@ -1,17 +1,19 @@
-import {Product} from "../types/Product.tsx";
-import {Link} from "react-router-dom";
+import { Product } from "../types/Product.tsx";
+import "../ProductCard.css";
 
 type ProductProps = {
-    product: Product
-    showBackToMainPage: boolean
-}
-export default function ProductCard({product, showBackToMainPage}:ProductProps) {
-    return <li key={product.id}>
-        <h2>{product.name}</h2>
-        <h3>Category: {product.category}</h3>
-        <h4>Quantity: {product.quantity}</h4>
-        {showBackToMainPage ? <Link to={"/"}>Got back to main page </Link> :
-            <Link to={"/product/" + product.id}>Show product detail page</Link>}
-    </li>
-}
+    product: Product;
+    showBackToMainPage: boolean;
+};
 
+export default function ProductCard({ product }: ProductProps) {
+    return (
+        <li className="product-card">
+            <div className="product-content">
+                <h2 className="product-name">{product.productName}</h2>
+                <p className="product-category">Category: {product.category}</p>
+                <p className="product-quantity">Quantity: {product.productQuantity}</p>
+            </div>
+        </li>
+    );
+}
