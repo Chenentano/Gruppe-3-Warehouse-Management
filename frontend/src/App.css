@@ -1,32 +1,36 @@
+/* Center the heading */
 h1 {
-    display: flex;
-    justify-content: center;
+    text-align: center;
 }
 
-
+/* Reset list styles and use Flexbox for the list */
 ul {
     list-style: none;
     padding: 0;
     margin: 0;
-
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
 }
 
+/* Flexbox for header */
 header {
     display: flex;
     justify-content: space-between;
+    align-items: center; /* Align items vertically */
 }
 
+/* Style for clickable elements */
 span {
     cursor: pointer;
     text-decoration: underline;
 }
 
+/* Flexbox for navigation */
 nav {
     display: flex;
     align-items: center;
     gap: 20px;
 }
+
