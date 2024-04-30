@@ -17,12 +17,17 @@ export default function ProductCard({ product }: ProductProps) {
 
     return (
         <li className="product-card">
-            <div className="product-content">
-                <h2 className="product-name">Product-Name{product.productName}</h2>
-                <p className="product-category">Product ID: {product.productId}</p>
-                <p className="product-category">Category: {product.category}</p>
-                <p className="product-quantity">Quantity: {product.productQuantity}</p>
-                <button onClick={handleDelete}>Delete</button>
+            <div className="product-card">
+                <div className="product-content">
+                    <h3 className="product-category">Product ID: <span
+                        className="larger-text">{product.productId}</span></h3>
+                    <p className="product-name larger-text">{product.productName}</p>
+                    <p className="product-category larger-text">Category: <br/> <span
+                        className="smaller-text">{product.category}</span></p>
+                    <p className="product-quantity larger-text">Quantity: <br/> <span
+                        className="smaller-text">{product.productQuantity}</span></p>
+                    <button onClick={handleDelete} className="larger-text">Delete</button>
+                </div>
             </div>
         </li>
     );
