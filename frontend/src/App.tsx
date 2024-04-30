@@ -4,7 +4,7 @@ import ProductsPage from "./pages/productsPage.tsx";
 import StartPage from "./pages/startPage.tsx";
 import {UserBar} from "./components/UserBar.tsx";
 import {Navi} from "./components/Navi.tsx";
-import AddProductForm from "./components/AddNewProductForm.tsx";
+import AddNewProductForm from "./components/AddNewProductForm.tsx";
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
             <Routes>
                 <Route path={"/"} element={<StartPage/>}/>
                 <Route path={"product/:id"} element={<ProductsPage/>}/>
-                <Route path={"/add"} element={<AddProductForm/>}/>
+                <Route path={"/add"} element={<AddNewProductForm/>}/>
             </Routes>
         </>
     )

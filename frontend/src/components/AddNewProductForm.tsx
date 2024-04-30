@@ -4,10 +4,12 @@ import { Product, ProductCategory } from "../types/Product.tsx";
 import "../AddNewProductFormStyle.css";
 
 const AddProductForm: React.FC = () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     const [formData, setFormData] = useState<Product>({
         productId: '',
         productName: '',
-        category: ProductCategory.NONE,
+        category: ProductCategory.None,
         productQuantity: 0
     });
 
@@ -21,17 +23,25 @@ const AddProductForm: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/api/product/add', formData);
+            const response = await axios.post('/api/product/add', formData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
             console.log('Product successfully added:', response.data);
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             setFormData({
                 productId: '',
                 productName: '',
-                category: ProductCategory.NONE,
+                category: ProductCategory.None,
                 productQuantity: 0,
             });
-            setSuccessMessage('Produkt wurde erfolgreicht hinzugefügt!');
+            setSuccessMessage('Produkt wurde erfolgreich hinzugefügt!');
         } catch (error) {
             console.error('Error adding product:', error);
+        } finally {
+            setSuccessMessage('');
         }
     };
 
