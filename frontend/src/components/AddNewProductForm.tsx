@@ -5,9 +5,10 @@ import "../AddNewProductFormStyle.css";
 
 const AddProductForm: React.FC = () => {
     const [formData, setFormData] = useState<Product>({
+        id:"",
         productId: '',
         productName: '',
-        category: ProductCategory.NONE,
+        category: ProductCategory.Autos,
         productQuantity: 0
     });
 
@@ -24,14 +25,18 @@ const AddProductForm: React.FC = () => {
             const response = await axios.post('/api/product/add', formData);
             console.log('Product successfully added:', response.data);
             setFormData({
+                id:"",
                 productId: '',
                 productName: '',
-                category: ProductCategory.NONE,
+                category: ProductCategory.Autos,
                 productQuantity: 0,
             });
-            setSuccessMessage('Produkt wurde erfolgreicht hinzugefügt!');
+            setSuccessMessage('Produkt wurde erfolgreich hinzugefügt!');
         } catch (error) {
             console.error('Error adding product:', error);
+        } finally {
+            // Reset success message after form submission
+            setSuccessMessage('');
         }
     };
 
