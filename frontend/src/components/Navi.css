@@ -1,5 +1,6 @@
 .active {
-    background-color: #555555;
+    #background-color: #555555;
+    background-color: dimgray;
 }
 
 nav {
@@ -11,11 +12,11 @@ nav {
     color: white;
     position: sticky;
     top: 0;
+    padding: 0 1rem;
 }
 
 nav .navbar-title {
     font-size: 3.5rem;
-    margin: 1rem;
     font-weight: bold;
     text-decoration: none;
     color: white;
@@ -41,7 +42,7 @@ nav ul li a {
     border-radius: 0.5rem;
     border-style: solid;
     border-width: 2px;
-    border-color: #333333
+    border-color: dimgray;
 }
 
 nav ul li a:not(.active):hover {
