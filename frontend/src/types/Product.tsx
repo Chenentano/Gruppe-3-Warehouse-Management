@@ -1,4 +1,5 @@
 export interface Product {
+    id:string;
     productId: string;
     productName: string;
     category: ProductCategory; // Use ProductCategory enum
@@ -7,6 +8,18 @@ export interface Product {
 
 
 export enum ProductCategory{
-    NONE,
-    GENERAL
+    Autos,
+    Baby,
+    Baumaterial,
+    Computer,
+    Fashion,
+    Games,
+    Garten,
+    Haustiere,
+    Kosmetik,
+    Spielzeug
+
+
+
+
 }
