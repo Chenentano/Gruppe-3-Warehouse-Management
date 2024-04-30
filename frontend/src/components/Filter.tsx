@@ -5,11 +5,14 @@ export type FilterValues = {
     category: string
 }
 
+export type FilterFunction = (filterValues: FilterValues) => void;
+
 type FilterProps = {
-    callback: (filterValues: FilterValues) => void
+    //callback: (filterValues: FilterValues) => void
+    filterFunction: FilterFunction
 }
 
-const filterStartValues: FilterValues = {
+export const filterStartValues: FilterValues = {
     text:"",
     category:"name"
 }
@@ -25,7 +28,7 @@ export function Filter(props: FilterProps) {
             text: event.target.value,
             category: filterCategory
         }
-        props.callback(newFilterValues);
+        props.filterFunction(newFilterValues);
     }
 
     function handleOnSelectChange(event: ChangeEvent<HTMLSelectElement>) {
@@ -35,7 +38,7 @@ export function Filter(props: FilterProps) {
             text: filterText,
             category: event.target.value
         }
-        props.callback(newFilterValues);
+        props.filterFunction(newFilterValues);
     }
 
     return (<>
