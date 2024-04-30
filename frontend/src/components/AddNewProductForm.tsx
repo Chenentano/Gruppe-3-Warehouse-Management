@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import {Product, ProductCategory} from "../types/Product.tsx";
-
+import { Product, ProductCategory } from "../types/Product.tsx";
 
 const AddProductForm: React.FC = () => {
     const [formData, setFormData] = useState<Product>({
@@ -11,7 +10,7 @@ const AddProductForm: React.FC = () => {
         productQuantity: 0
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
@@ -44,7 +43,15 @@ const AddProductForm: React.FC = () => {
             </label>
             <label>
                 Category:
-                <input type="text" name="category" value={formData.category} onChange={handleChange} required />
+                <select name="category" value={formData.category} onChange={handleChange} required>
+                    {Object.keys(ProductCategory)
+                        .filter((key) => isNaN(Number(ProductCategory[key as keyof typeof ProductCategory])))
+                        .map((key) => (
+                            <option key={key} value={ProductCategory[key as keyof typeof ProductCategory]}>
+                                {ProductCategory[key as keyof typeof ProductCategory]}
+                            </option>
+                        ))}
+                </select>
             </label>
             <label>
                 Quantity:
