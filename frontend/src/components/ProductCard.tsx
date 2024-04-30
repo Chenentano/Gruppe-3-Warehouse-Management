@@ -10,7 +10,9 @@ export default function ProductCard({ product }: ProductProps) {
 
     const handleDelete = () => {
         axios.delete("api/product/delete/" + product.id)
-            .then(() => {console.log("Klappt!")});
+            .then(() => {
+                console.log("Test");
+            });
     };
 
     return (
