@@ -1,4 +1,4 @@
-import {Product} from "../App.tsx";
+import {Product} from "../types/Product.tsx";
 import {Link} from "react-router-dom";
 
 type ProductProps = {
