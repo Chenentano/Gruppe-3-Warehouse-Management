@@ -4,18 +4,10 @@ import ProductsPage from "./pages/productsPage.tsx";
 import StartPage from "./pages/startPage.tsx";
 import {UserBar} from "./components/UserBar.tsx";
 import {Navi} from "./components/Navi.tsx";
-
-export type Product = {
-    id: number,
-    productId: string,
-    name: string,
-    category: string,
-    quantity: number,
-    status: string
-
-}
+import AddProductForm from "./components/AddNewProductForm.tsx";
 
 function App() {
+
     return (
         <>
             <h1>Warehouse-System</h1>
@@ -24,6 +16,7 @@ function App() {
             <Routes>
                 <Route path={"/"} element={<StartPage/>}/>
                 <Route path={"product/:id"} element={<ProductsPage/>}/>
+                <Route path={"/add"} element={<AddProductForm/>}/>
             </Routes>
         </>
     )
