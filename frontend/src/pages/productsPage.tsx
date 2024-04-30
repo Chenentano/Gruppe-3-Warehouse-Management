@@ -1,6 +1,6 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {Product} from "../App.tsx";
+import {Product} from "../types/Product.tsx";
 import ProductCard from "../components/ProductCard.tsx";
 import axios from "axios";
 

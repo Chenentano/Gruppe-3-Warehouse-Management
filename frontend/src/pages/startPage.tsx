@@ -1,6 +1,6 @@
 import QuantityStatus from "../components/QuantityStatus.tsx";
 import ProductCard from "../components/ProductCard.tsx";
-import {Product} from "../App.tsx";
+import {Product, ProductCategory} from "../types/Product.tsx";
 import {ChangeEvent, useEffect, useState} from "react";
 import axios from "axios"
 
@@ -66,11 +66,11 @@ export default function StartPage() {
         </header>
 
         <ul>
-            {product.filter(product => { return product.status === status || status === "All" })
+            {product.filter(product => { return product.category === ProductCategory.NONE && ProductCategory.GENERAL || status === "All" })
                 .filter(product => {
-                    return product.name.toLowerCase().includes(input.toLowerCase()) // true or false
+                    return product.productName.toLowerCase().includes(input.toLowerCase()) // true or false
                 }).map((product: Product) => {
-                    return <ProductCard key={product.id} product={product} showBackToMainPage={false} />
+                    return <ProductCard key={product.productId} product={product} showBackToMainPage={false} />
                 })}
         </ul>
     </>
