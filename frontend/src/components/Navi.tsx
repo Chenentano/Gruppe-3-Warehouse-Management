@@ -1,12 +1,13 @@
 import {Link, NavLink} from "react-router-dom";
 import './Navi.css';
-import {Filter, FilterValues} from "./Filter.tsx";
+import {Filter, FilterFunction} from "./Filter.tsx";
 
-export function Navi(): JSX.Element {
+type NaviProps = {
+    filterCallback: FilterFunction
+}
 
-    function myFilterCallback(filterValues: FilterValues) {
-        console.log("Callback: " + filterValues.text + " - " + filterValues.category);
-    }
+
+export function Navi(props: NaviProps): JSX.Element {
 
     return <nav className="navbar">
         <div>
@@ -22,7 +23,7 @@ export function Navi(): JSX.Element {
                     <NavLink to={"/add"}>Produkt hinzufügen</NavLink>
                 </li>
                 <li className="nav-item filter-item">
-                    <Filter callback={myFilterCallback} />
+                    <Filter filterFunction={props.filterCallback} />
                 </li>
             </ul>
 
