@@ -5,7 +5,8 @@ import StartPage from "./pages/startPage.tsx";
 import {UserBar} from "./components/UserBar.tsx";
 import {Navi} from "./components/Navi.tsx";
 import AddProductForm from "./components/AddNewProductForm.tsx";
-import {EditProductPage} from "./pages/editProductPage.tsx";
+import EditProductCard from "./components/EditProductCard.tsx";
+
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
                 <Route path={"/"} element={<StartPage/>}/>
                 <Route path={"product/:id"} element={<ProductsPage/>}/>
                 <Route path={"/add"} element={<AddProductForm/>}/>
-                <Route path={"/edit"} element={<EditProductPage/>}/>
+                <Route path={"/edit"} element={<EditProductCard/>}/>
             </Routes>
         </>
     )

@@ -1,93 +1,74 @@
-import {ChangeEvent, useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+
+
 import {Product, ProductCategory} from "../types/Product.tsx";
 import axios from "axios";
+import {useState} from "react";
 
+const EditProductCard: React.FC = () => {
+    const [editData, setEditData] = useState<Product>({
+        productId: '',
+        productName: '',
+        category: ProductCategory.NONE,
+        productQuantity: 0
+    });
 
-type EditCardParams = {
-    product: Product,
-}
+    const [successMessage, setSuccessMessage] = useState<string>('');
 
-export function EditProductCard({product}: EditCardParams) {
-    const [productId, setProductId]=useState<string>("")
-    const [productName, setProductName]= useState<string>("")
-    const [category, setCategory] = useState<ProductCategory[]>([]);
-    const [productQuantity, setProductQuantity] = useState<number>(1);
-    const navigate = useNavigate();
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setEditData({ ...editData, [name]: value });
+    };
 
-    useEffect(() => {
-            setProductId(product.productId);
-            setProductName(product.productName);
-            setCategory(product.category(ProductCategory);
-            setProductQuantity(product.productQuantity)
-        }, [product]
-    )
-
-    function handleProductIdOnChange(event: ChangeEvent<HTMLInputElement>): void{
-        setProductId(event.target.value)
-    }
-
-    function handleProductNameOnChange(event: ChangeEvent<HTMLInputElement>): void{
-        setProductName(event.target.value)
-    }
-    function handleCategoryOnChange(event: ChangeEvent<HTMLInputElement>): void {
-        setCategory(event.target.value);
-    }
-
-    function handleProductQuantityOnChange(event: ChangeEvent<HTMLSelectElement>): void {
-        setProductQuantity(event.target.value());
-    }
-
-    function handleSaveButtonClick() {
-        const newProduct = {
-
-            productId: product.productId,
-            productName: product.productName,
-            category: product.category,
-            productQuantity: product.productQuantity
-
+    const handleEdit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('/api/product/edit', editData);
+            console.log('ProductCard edited:', response.data);
+            setEditData({
+                productId: '',
+                productName: '',
+                category: ProductCategory.NONE,
+                productQuantity: 0,
+            });
+            setSuccessMessage('ProductCard edit success!');
+        } catch (error) {
+            console.error('Error! ProductCard not edited:', error);
         }
-        axios
-            .put("/api/product/" + product.productId + "/update", newProduct)
-            .then(() => {
-                navigate("/product/" + product.productId)
-            })
-    }
+    };
 
-    return (<>
-        <div className="edit-product-card">
-            <h3>EditProductCard</h3>
+    return (
+        <aside  onSubmit={handleEdit} className="edit-ProductCard">
+            <label className="edit-label">
+                Product ID:
+                <input type="text" name="productId" value={editData.productId} onChange={handleChange} className="edit-input" required />
+            </label>
+            <label className="edit-label">
+                Name:
+                <input type="text" name="productName" value={editData.productName} onChange={handleChange} className="edit-input" required />
+            </label>
+            <label className="edit-label">
+                Category:
+                <select name="category" value={editData.category} onChange={handleChange} className="edit-select" required>
+                    {Object.keys(ProductCategory)
+                        .filter((key) => isNaN(Number(ProductCategory[key as keyof typeof ProductCategory])))
+                        .map((key) => (
+                            <option key={key} value={ProductCategory[key as keyof typeof ProductCategory]}>
+                                {ProductCategory[key as keyof typeof ProductCategory]}
+                            </option>
+                        ))}
+                </select>
+            </label>
+            <label className="edit-label">
+                Quantity:
+                <input type="number" name="productQuantity" value={editData.productQuantity} onChange={handleChange} className="edit-input" required />
+            </label>
+            <button type="submit" className="edit-button">Edit ProductCard
+           </button>
+            {successMessage && <div className="success-message">{successMessage}</div>}
+        </aside>
+    );
+};
 
-
-            <div>
-                <label htmlFor={"productId"}>ProductId: </label>
-                <input id={"productId"} name={"productId"} type={"text"} value={productId}
-                       onChange={handleProductIdOnChange}/>
-            </div>
-
-
-            <div>
-                <label htmlFor={"productName"}>ProductName: </label>
-                <input id={"productName"} name={"productName"} type={"text"} value={productName}
-                       onChange={handleProductNameOnChange}/>
-            </div>
-
-
-            <div>
-                <label htmlFor={"category"}>Category: </label>
-                <input id={"category"} name={"category"} type={"text"} value={category}
-                       onChange={handleCategoryOnChange}/>
-            </div>
-            <div>
-                <label htmlFor={"productQuantity"}>ProductQuantity: </label>
-                <input id={"productQuantity"} name={"productQuantity"} type={"number"} value={productQuantity}
-                       onChange={handleProductQuantityOnChange}/>
-            </div>
-            <div>
-                <button onClick={handleSaveButtonClick}>Save</button>
-            </div>
-        </div>
-    </>)
+export default EditProductCard;
 
 
-}
