@@ -41,17 +41,17 @@ export default function StartPage(props: StartPageProps) {
         if (!props.filterValues) {
             return true;
         }
-        const seachtext = props.filterValues.text.toLowerCase();
+        const searchtext = props.filterValues.text.toLowerCase();
 
         switch (props.filterValues.category) {
             case "productId":
-                return (product.productId.toLowerCase().includes(seachtext));
+                return (product.productId.toLowerCase().includes(searchtext));
             case "name":
-                return (product.productName.toLowerCase().includes(seachtext));
+                return (product.productName.toLowerCase().includes(searchtext));
             case "category":
-                return (product.category.toString().toLowerCase().includes(seachtext));
+                return (product.category.toString().toLowerCase().includes(searchtext));
             case "quantity":
-                return (product.productQuantity.toString().toLowerCase().includes(seachtext));
+                return (product.productQuantity.toString().toLowerCase().includes(searchtext));
         }
         return true;
     }
