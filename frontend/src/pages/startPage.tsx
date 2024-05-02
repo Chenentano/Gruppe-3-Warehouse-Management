@@ -38,7 +38,10 @@ export default function StartPage(props: StartPageProps) {
     }
 
     function doFilter(product: Product): boolean {
-        let seachtext = props.filterValues.text.toLowerCase();
+        if (!props.filterValues) {
+            return true;
+        }
+        const seachtext = props.filterValues.text.toLowerCase();
 
         switch (props.filterValues.category) {
             case "productId":
