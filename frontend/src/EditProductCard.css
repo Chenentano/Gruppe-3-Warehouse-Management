@@ -1,0 +1,41 @@
+.edit-ProductCard {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    background-image: url(./Bilder/img_edit.jpg);
+}
+
+.aside-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.aside-input,
+.aside-select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.aside-button {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.aside-button:hover {
+    background-color: red;
+}
