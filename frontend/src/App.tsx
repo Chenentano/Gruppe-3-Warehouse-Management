@@ -4,28 +4,19 @@ import ProductsPage from "./pages/productsPage.tsx";
 import StartPage from "./pages/startPage.tsx";
 import {UserBar} from "./components/UserBar.tsx";
 import {Navi} from "./components/Navi.tsx";
-import AddProductForm from "./components/AddNewProductForm.tsx";
-import {filterStartValues, FilterValues} from "./components/Filter.tsx";
-import {useState} from "react";
+import AddNewProductForm from "./components/AddNewProductForm.tsx";
 
 function App() {
-
-    const [filterValues, setFilterValues] = useState<FilterValues>(filterStartValues)
-
-    function filterFunction(filterValuesParam: FilterValues) {
-        setFilterValues(filterValuesParam)
-    }
-
 
     return (
         <>
             <h1>Warehouse-System</h1>
             <UserBar/>
-            <Navi filterCallback={filterFunction} />
+            <Navi/>
             <Routes>
-                <Route path={"/"} element={<StartPage filterValues={filterValues}></StartPage>}/>
+                <Route path={"/"} element={<StartPage/>}/>
                 <Route path={"product/:id"} element={<ProductsPage/>}/>
-                <Route path={"/add"} element={<AddProductForm/>}/>
+                <Route path={"/add"} element={<AddNewProductForm/>}/>
             </Routes>
         </>
     )

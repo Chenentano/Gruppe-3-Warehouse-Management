@@ -55,12 +55,12 @@ export default function StartPage(props: StartPageProps) {
 
     return (
         <>
-        <header>
-            <div>
-                <input type="text" onChange={handleOnChangeInput} value={input}/>
-                <QuantityStatus status={status} onChange={handleOnSelectChange}/>
-            </div>
-        </header>
+            <header>
+                <div>
+                    <input type="text" onChange={handleOnChangeInput} value={input} />
+                    <QuantityStatus status={status} onChange={handleOnSelectChange} />
+                </div>
+            </header>
 
         <ul>
             {products
