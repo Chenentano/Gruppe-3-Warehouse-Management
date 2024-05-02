@@ -43,10 +43,10 @@ export default function StartPage() {
 
             <ul>
                 {products
-                    .filter(product => status === "All" || product.category === ProductCategory.NONE && ProductCategory.GENERAL)
+                    .filter(product => status === "All" || product.category === ProductCategory.None)
                     .filter(product => product.productName.toLowerCase().includes(input.toLowerCase()))
                     .map((product: Product) => (
-                        <ProductCard key={product.productId} product={product} showBackToMainPage={false} />
+                        <ProductCard key={product.productId} product={product} />
                     ))}
             </ul>
         </>
