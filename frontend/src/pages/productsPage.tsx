@@ -18,5 +18,5 @@ export default function ProductsPage() {
         })
     }, [params.id])
 
-    return <><ProductCard product={product} showBackToMainPage={true} /></>
+    return <><ProductCard product={product}  /></>
 }

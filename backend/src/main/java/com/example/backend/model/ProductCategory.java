@@ -2,5 +2,14 @@ package com.example.backend.model;
 
 public enum ProductCategory {
     NONE,
-    GENERAL
+    Autos,
+    Baby,
+    Baumaterial,
+    Computer,
+    Fashion,
+    Games,
+    Garten,
+    Haustiere,
+    Kosmetik,
+    Spielzeug
 }

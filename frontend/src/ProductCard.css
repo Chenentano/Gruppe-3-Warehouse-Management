@@ -1,29 +1,34 @@
 .product-card {
-    background-color: #fff;
+    background-color: #fffff1;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin: 10px;
     overflow: hidden;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.1s ease-in-out;
     width: 300px;
+    height: auto;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-1px);
 }
 
 .product-content {
-    padding: 20px;
+    padding: 10px;
 }
 
-.product-name {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
+.product-name,
 .product-category,
-.product-quantity {
+.product-quantity,
+button {
     font-size: 1rem;
+}
+
+.larger-text {
+    font-size: 1.5rem;
+}
+
+.smaller-text {
+    font-size: 0.8rem;
     color: #555;
-    margin-bottom: 5px;
 }
