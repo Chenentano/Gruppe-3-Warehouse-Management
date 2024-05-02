@@ -81,7 +81,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: push-to-docker-hub
     environment:
-      name: Gruppe-3-Warehouse-Management # Capstone Project name
+      name: https://github.com/Chenentano/Gruppe-3-Warehouse-Management # Capstone Project name
       url: https://warehouse-manager-2ztl.onrender.com
  # Link to deployment
     steps:
