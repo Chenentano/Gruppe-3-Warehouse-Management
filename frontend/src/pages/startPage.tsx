@@ -1,15 +1,17 @@
-import QuantityStatus from "../components/QuantityStatus.tsx";
 import ProductCard from "../components/ProductCard.tsx";
-import {Product, ProductCategory} from "../types/Product.tsx";
-import {ChangeEvent, useEffect, useState} from "react";
+import {Product} from "../types/Product.tsx";
+import {useEffect, useState} from "react";
 import axios from "axios";
+import {FilterValues} from "../components/Filter.tsx";
 
 
-export default function StartPage() {
+type StartPageProps = {
+    filterValues: FilterValues;
+}
+
+export default function StartPage(props: StartPageProps) {
 
     const [products, setProducts] = useState<Product[]>([]);
-    const [input, setInput] = useState<string>("");
-    const [status, setStatus] = useState<string>("All");
 
     useEffect(() => {
         // Fetch all products when the component mounts
@@ -24,31 +26,35 @@ export default function StartPage() {
         });
     }
 
-    function handleOnChangeInput(event: ChangeEvent<HTMLInputElement>) {
-        setInput(event.target.value);
-    }
+    function doFilter(product: Product): boolean {
+        if (!props.filterValues) {
+            return true;
+        }
+        const searchtext = props.filterValues.text.toLowerCase();
 
-    function handleOnSelectChange(event: ChangeEvent<HTMLSelectElement>) {
-        setStatus(event.target.value);
+        switch (props.filterValues.category) {
+            case "productId":
+                return (product.productId.toLowerCase().includes(searchtext));
+            case "name":
+                return (product.productName.toLowerCase().includes(searchtext));
+            case "category":
+                return (product.category.toString().toLowerCase().includes(searchtext));
+            case "quantity":
+                return (product.productQuantity.toString().toLowerCase().includes(searchtext));
+        }
+        return true;
     }
 
     return (
         <>
-            <header>
-                <div>
-                    <input type="text" onChange={handleOnChangeInput} value={input} />
-                    <QuantityStatus status={status} onChange={handleOnSelectChange} />
-                </div>
-            </header>
-
             <ul>
                 {products
-                    .filter(product => status === "All" || product.category === ProductCategory.None)
-                    .filter(product => product.productName.toLowerCase().includes(input.toLowerCase()))
+                    .filter(product => doFilter(product))
                     .map((product: Product) => (
-                        <ProductCard key={product.productId} product={product} />
+                        <ProductCard key={product.productId} product={product} showBackToMainPage={false}/>
                     ))}
             </ul>
         </>
-    );
+    )
+        ;
 }
