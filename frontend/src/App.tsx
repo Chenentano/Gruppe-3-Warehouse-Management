@@ -10,11 +10,9 @@ import {filterStartValues, FilterValues} from "./components/Filter.tsx";
 import {useState} from "react";
 
 function App() {
-//    const [filterText, setFilterText] = useState<string>("");
-//    const [filterCategory, setFilterCategory] = useState<string>("name");
+
     const [appFilterValues, setAppFilterValues] = useState<FilterValues>(filterStartValues);
 
-    //FilterFunction = (filterValues: FilterValues) => void;
     function filterValueCallback(filterValues: FilterValues): void {
         setAppFilterValues(filterValues);
         console.log("filterValueCallback: " + filterValues.text + " / " + filterValues.category);
