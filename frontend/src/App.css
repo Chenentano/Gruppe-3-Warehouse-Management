@@ -24,7 +24,6 @@ header {
 /* Style for clickable elements */
 span {
     cursor: pointer;
-    text-decoration: underline;
 }
 
 /* Flexbox for navigation */
@@ -75,3 +74,4 @@ nav {
 .select-status:focus {
     border-color: #007bff;
 }
+

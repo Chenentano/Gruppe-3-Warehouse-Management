@@ -45,7 +45,6 @@ function App() {
 
     return (
         <>
-            <h1>Warehouse-System</h1>
             <UserBar loginFunction={login} logoutFunction={logout} />
             <Navi filterCallback={filterValueCallback}/>
             <Routes>
