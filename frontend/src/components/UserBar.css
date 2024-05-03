@@ -1,9 +1,12 @@
 .user-bar {
+    position: sticky;
+    top: 0;
+    height: 4rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 0 1rem;
     padding-bottom: 0.5rem;
     color: white;
     background-color: #333333;

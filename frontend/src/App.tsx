@@ -1,5 +1,5 @@
 import "./App.css"
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import ProductsPage from "./pages/productsPage.tsx";
 import StartPage from "./pages/startPage.tsx";
 import {UserBar} from "./components/UserBar.tsx";
@@ -14,6 +14,8 @@ import axios from "axios";
 function App() {
 
     const [appFilterValues, setAppFilterValues] = useState<FilterValues>(filterStartValues);
+
+    const navigate = useNavigate();
 
     function filterValueCallback(filterValues: FilterValues): void {
         setAppFilterValues(filterValues);
@@ -34,7 +36,11 @@ function App() {
 
     function logout(){
         axios.get("/api/user/logout")
-            .then(() => getMe())
+            .then(() => {
+                setUser("");
+                getMe()
+                navigate("/")
+            })
     }
 
     function getMe(){
