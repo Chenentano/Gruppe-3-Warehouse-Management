@@ -19,7 +19,7 @@ function App() {
         console.log("filterValueCallback: " + filterValues.text + " / " + filterValues.category);
     }
 
-    const[user, setUser] = useState<string>("DEFAULT")
+    const[user, setUser] = useState<string>("")
 
     useEffect(() =>
             getMe()
@@ -46,7 +46,7 @@ function App() {
     return (
         <>
             <h1>Warehouse-System</h1>
-            <UserBar loginFunction={login} logoutFunction={logout} />
+            <UserBar user={user} loginFunction={login} logoutFunction={logout} />
             <Navi filterCallback={filterValueCallback}/>
             <Routes>
                 <Route path={"/"} element={<StartPage filterValues={appFilterValues}/>} />
