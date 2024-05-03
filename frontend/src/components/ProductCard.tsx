@@ -1,6 +1,9 @@
 import { Product } from "../types/Product";
 import "../ProductCard.css";
 import axios from "axios";
+import {Link} from "react-router-dom";
+
+
 
 export type ProductProps = {
     product: Product;
@@ -15,6 +18,13 @@ export default function ProductCard({ product }: ProductProps) {
             });
     };
 
+    const handleEdit = () => {
+
+
+    };
+
+
+
     return (
         <li className="product-card">
             <div className="product-card">
@@ -27,6 +37,8 @@ export default function ProductCard({ product }: ProductProps) {
                     <p className="product-quantity larger-text">Quantity: <br/> <span
                         className="smaller-text">{product.productQuantity}</span></p>
                     <button onClick={handleDelete} className="larger-text">Delete</button>
+                    <button onClick={handleEdit} className="larger-text">Edit <Link to={"edit/" + product.productQuantity}>Here</Link> </button>
+
                 </div>
             </div>
         </li>

@@ -10,6 +10,7 @@ import {filterStartValues, FilterValues} from "./components/Filter.tsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
+
 function App() {
 
     const [appFilterValues, setAppFilterValues] = useState<FilterValues>(filterStartValues);
@@ -52,6 +53,7 @@ function App() {
                 <Route path={"product/:id"} element={<ProductsPage />} />
                 <Route path={"/add"} element={<AddNewProductForm />} />
                 <Route path={"/edit"} element={<EditProductCard/>}/>
+
             </Routes>
         </>
     )
