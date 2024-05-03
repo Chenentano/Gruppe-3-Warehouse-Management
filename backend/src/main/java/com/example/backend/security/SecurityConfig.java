@@ -22,9 +22,9 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
+                        .requestMatchers("/api/product/delete/*").authenticated()
+                        .requestMatchers("/api/product/add").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/product").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/product/delete").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/api/product/add").authenticated()
                         .anyRequest().permitAll())
                 .logout(logout -> logout.logoutUrl("/api/user/logout")
                         .logoutSuccessHandler((request, response, authentication) -> response.setStatus(200)))
