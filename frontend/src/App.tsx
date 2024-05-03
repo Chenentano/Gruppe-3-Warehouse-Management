@@ -9,6 +9,7 @@ import AddNewProductForm from "./components/AddNewProductForm.tsx";
 import {filterStartValues, FilterValues} from "./components/Filter.tsx";
 import {useState} from "react";
 
+
 function App() {
 //    const [filterText, setFilterText] = useState<string>("");
 //    const [filterCategory, setFilterCategory] = useState<string>("name");
@@ -30,6 +31,7 @@ function App() {
                 <Route path={"product/:id"} element={<ProductsPage />} />
                 <Route path={"/add"} element={<AddNewProductForm />} />
                 <Route path={"/edit"} element={<EditProductCard/>}/>
+
             </Routes>
         </>
     )
