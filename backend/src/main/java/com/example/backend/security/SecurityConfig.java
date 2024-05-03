@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -23,8 +22,9 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers(HttpMethod.GET, "/api/asterix").permitAll()
-                        .requestMatchers("/api/asterix").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/product").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/product/delete").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/product/add").authenticated()
                         .anyRequest().permitAll())
                 .logout(logout -> logout.logoutUrl("/api/user/logout")
                         .logoutSuccessHandler((request, response, authentication) -> response.setStatus(200)))
