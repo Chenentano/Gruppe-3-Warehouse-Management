@@ -47,7 +47,7 @@ export default function StartPage(props: StartPageProps) {
 
     return (
         <>
-            <ul>
+            <ul className={"product-list"}>
                 {products
                     .filter(product => doFilter(product))
                     .map((product: Product) => (
